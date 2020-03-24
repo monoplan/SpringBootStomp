@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 3600
+  tomcat:
+    uri-encoding: UTF-8
+       
+spring:    
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.0.48:3306/smart_city
+    username: n3nsmartcity
+    password: wizeye1004!
+
+  mvc:    view:      prefix: /WEB-INF/views/
+      suffix: .jsp
+       
+  http:
+    encoding:      charset: UTF-8
+  # jsp 새로고침 적용 
+  devtools:
+    livereload:      enabled: true 

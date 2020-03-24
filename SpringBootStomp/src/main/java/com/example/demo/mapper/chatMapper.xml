@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 어느 매퍼 파일과 매핑되는지 -->
+	<mapper namespace="chatMapper">
+	
+	
+	<!-- 유저 목록  -->
+	<select id="userList" parameterType="com.example.demo.model.CommMap" resultType="com.example.demo.model.CommMap">
+		SELECT * FROM (
+			SELECT 'user1' AS USERID
+			UNION ALL 
+			SELECT 'user2' 
+			UNION ALL 
+			SELECT 'user3'  
+			UNION ALL 
+			SELECT 'user4'  
+			UNION ALL 
+			SELECT 'user5'  
+			UNION ALL 
+			SELECT 'user6'  
+		) A WHERE A.USERID != #{userId}
+ 
+	</select>
+	
+	
+	<!-- 유저 상태 변경  -->
+	<update id="stateUpdate" parameterType="com.example.demo.model.CommMap">
+		UPDATE CHAT_INFO SET STATE = #{state}, SESSIONID = #{sessionId}
+		WHERE 1 = 1 
+			<if test="roomId != null">
+			AND ROOMID = #{roomId}
+			</if> 
+			<if test="userId != null">
+			AND USERID = #{userId}
+			</if> 
+			
+	</update>
+	
+	
+	<!-- 채팅방 유저 목록 -->
+	<select id="roomUserList" parameterType="com.example.demo.model.CommMap" resultType="com.example.demo.model.CommMap">
+		SELECT * FROM CHAT_INFO 
+		WHERE 1=1
+		<!-- 유저가 속한 방의 목록을 출력할때 사용  --> 
+		<if test="userId != null">		
+			AND ROOMID IN (SELECT ROOMID FROM CHAT_INFO WHERE USERID = #{userId} )
+		</if> 
+		<!-- 접속 해제시 roomId, userId 를 찾아 낼때 사용  -->
+		<if test="sessionId != null">		
+			AND SESSIONID =  #{sessionId} 
+		</if>
+		<!-- 방에 속한 유저들을 찾아 낼때 사용 -->
+		<if test="roomId != null">
+   			AND ROOMID = #{roomId}
+		</if>
+		<if test="state != null">
+   			AND STATE = #{state}
+		</if>
+		ORDER BY ROOMID , USERID
+	</select>	
+	
+	
+	<!-- 방 정보 입력  -->
+	<select id="roomUserInsert" parameterType="com.example.demo.model.CommMap">
+		INSERT INTO CHAT_INFO (ROOMID, USERID, STATE, ROOMOWNER) VALUES ( #{roomId}, #{userId}, #{state}, #{roomOwner} ) 
+	</select>	
+	
+	<!--방 정보 삭제  -->
+	<delete id="roomUserDelete" parameterType="com.example.demo.model.CommMap"> 
+		DELETE FROM CHAT_INFO WHERE ROOMID = #{roomId} AND USERID = #{userId}
+	</delete>
+	
+
+</mapper>
