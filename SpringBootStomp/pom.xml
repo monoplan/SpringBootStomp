@@ -18,6 +18,15 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	
+	
+	<repositories>
+		<repository>
+		    <id>oracle</id>
+		    <name>ORACLE JDBC Repository</name>
+		    <url>http://maven.jahia.org/maven2</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -59,11 +68,20 @@
 		    <artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
+<!-- 
 		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
 		    <artifactId>mariadb-java-client</artifactId>
 		</dependency>
+ -->
 
+		<!-- oracle jdbc -->
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>org.mybatis</groupId>

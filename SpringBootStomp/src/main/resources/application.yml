@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8010
   servlet:
     context-path: /
     session:
@@ -9,10 +9,12 @@ server:
        
 spring:    
   datasource:
-    driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://192.168.0.48:3306/smart_city
-    username: n3nsmartcity
-    password: wizeye1004!
+#    driverClassName: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://192.168.0.48:3306/smart_city
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:xe:@localhost:1521/test
+    username: mono
+    password: 1230
 
   mvc:    view:      prefix: /WEB-INF/views/
       suffix: .jsp
