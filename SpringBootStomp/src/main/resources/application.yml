@@ -12,9 +12,9 @@ spring:
 #    driverClassName: org.mariadb.jdbc.Driver
 #    url: jdbc:mariadb://192.168.0.48:3306/smart_city
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:xe:@localhost:1521/test
+    url: jdbc:oracle:thin:@localhost:1521/xe
     username: mono
-    password: 1230
+    password: 1234
 
   mvc:    view:      prefix: /WEB-INF/views/
       suffix: .jsp

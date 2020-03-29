@@ -136,20 +136,24 @@ form #roomOut				{float:right; margin-right:10px;}
 <script>
 
 // 페이지 로딩 후 어플의 함수 호출  
-$(document).ready(function() { 	
-	if (window.window.ATC==undefined) {
+//$(document).ready(function() { 	
+//	if (window.window.ATC==undefined) {
 		$("#testdiv").css("display","block");
-	} else {
-		window.ATC.requestdata() ; 
-	}
-});
+//	} else {
+//		window.ATC.requestdata() ; 
+//	}
+//});
 
 
 var client = null ; 
 var subscription = null ; 
 
-var userId = null ; 
-var userPw = null ; 
+//var userId = null ; 
+//var userPw = null ; 
+
+var userId = "admin" ; 
+var userPw = "wizeye1004#" ; 
+
 var room = null ; 
 var roomId = null ; 
 var endpoint = "/endpoint" ; 
@@ -166,7 +170,7 @@ $("form[name='sessionForm']").on("submit", function(){
 $("input[name='connChat']").on("click", function(){
 	//checkConn() ;
 	if (userId == null) { alert('아이디 설정 필요'); return ; }
-	setuserid(userId, userPw) ; 
+//	setuserid(userId, userPw) ; 
 });
 
 // 채팅 해제 
@@ -670,6 +674,7 @@ function ajaxTrans(url, data, callback) {
 }
 
 // 페이지 로딩이 끝난 후 어플에서 실행 하는 함수 
+/*
 function setuserid(id, pw) { 
 	userId = id ; 
 
@@ -677,6 +682,7 @@ function setuserid(id, pw) {
 //	chat.open("http://mgkim.w21.n3n.co.kr","admin", "wizeye1004#");
 	chat.open("http://mgkim.w21.n3n.co.kr",id, pw);
 }
+*/
 
 // 유저 목록 가져 온다 
 function getUserList() { 
